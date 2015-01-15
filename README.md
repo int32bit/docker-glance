@@ -1,14 +1,14 @@
 # How to build
 ```bash
-docker  build --rm -t="krystism/glance"
+docker  build --rm -t="krystism/openstack-glance"
 ```
 
 # Start a instance
 Before start a glance instance, mysql and keystone service are required, we need mysql image and 
 keystone image, you can pull these images before start a glance instance! 
 ```bash
-docker run -d -e MYSQL_ROOT_PASSWORD=MYSQL_DBPASS -h mysql --name mysql -d mariadb:latest
-docker rm -f glance
+docker run -d -e MYSQL_ROOT_PASSWORD=MYSQL_DBPASS -h mysql --name mysql -d mariadb
+docker run -d  --link mysql:mysql --name keystone -h keystone krystism/openstack-keystone
 docker run -d\
       	--link mysql:mysql \
        	--link keystone:keystone \
@@ -18,7 +18,7 @@ docker run -d\
 	-e OS_TENANT_NAME=admin \
 	--name glance \
 	-h glance \
-	krystism/glance:latest
+	krystism/openstack-glance
 ```
 It may takes some time to execute initscript, you just need to do is wait about 5s, you can use docker logs to fetch
 some info from the instance, once the work is done, you can check if it really works:
