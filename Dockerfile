@@ -1,4 +1,4 @@
-FROM krystism/openstack_base
+FROM krystism/openstack_base:juno
 MAINTAINER krystism "krystism@gmail.com"
 # install packages
 RUN apt-get -y install glance python-glanceclient python-keystoneclient
