@@ -9,9 +9,9 @@ keystone image, you can pull these images before start a glance instance!
 ```
 docker run -d -e MYSQL_ROOT_PASSWORD=MYSQL_DBPASS -h mysql --name mysql -d mariadb
 docker run -d  --link mysql:mysql --name keystone -h keystone krystism/openstack-keystone
-docker run -d\
-      	--link mysql:mysql \
-       	--link keystone:keystone \
+docker run -d\ 
+	--link mysql:mysql \
+      	--link keystone:keystone \
 	-e OS_USERNAME=admin \
 	-e OS_PASSWORD=ADMIN_PASS \
 	-e OS_AUTH_URL=http://keystone:5000/v2.0 \
